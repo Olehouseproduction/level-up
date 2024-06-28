@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>LevelUp</title>
+  </head>
+  <body>
+    <section class="section-1 hero-block">
+      <div class="background-video">
+        <video src="video1.mp4" autoplay muted loop></video>
+      </div>
+      <div class="content _main-container">
+        <h1 class="main-title">LevelUp</h1>
+        <div class="main-section">
+          <img src="/images/prod.png" alt="LevelUp Product Image" class="product-image" />
+          <div class="right-section">
+            <ul class="product-features">
+              <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum, delectus.</li>
+              <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum, delectus.</li>
+              <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum, delectus.</li>
+            </ul>
+            <a href="#order-form" class="order-button">Заказать</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-2 composition-block">
+      <div class="composition-content _main-container">
+        <div class="ingredients-left">
+          <div class="ingredient">
+            <img src="ingredient1.jpg" alt="" />
+            <p>Ингредиент 1</p>
+          </div>
+          <div class="ingredient">
+            <img src="ingredient2.jpg" alt="" />
+            <p>Ингредиент 2</p>
+          </div>
+          <div class="ingredient">
+            <img src="ingredient3.jpg" alt="" />
+            <p>Ингредиент 3</p>
+          </div>
+        </div>
+        <img src="/images/prod.png" alt="Product Image" class="product-center" />
+        <div class="ingredients-right">
+          <div class="ingredient">
+            <img src="ingredient4.jpg" alt="" />
+            <p>Ингредиент 4</p>
+          </div>
+          <div class="ingredient">
+            <img src="ingredient5.jpg" alt="" />
+            <p>Ингредиент 5</p>
+          </div>
+          <div class="ingredient">
+            <img src="ingredient6.jpg" alt="" />
+            <p>Ингредиент 6</p>
+          </div>
+        </div>
+      </div>
+      <a href="#order-form" class="order-button">Заказать</a>
+    </section>
+
+    <section class="section-3 reviews-block">
+      <div class="reviews-carousel _main-container">
+        <div class="review">
+          <img src="reviewer1.jpg" alt="photo" />
+          <p class="reviewer-name">Иван Иванов</p>
+          <p class="review-text">
+            Отзыв 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+          </p>
+        </div>
+        <div class="review">
+          <img src="reviewer2.jpg" alt="photo" />
+          <p class="reviewer-name">Петр Петров</p>
+          <p class="review-text">
+            Отзыв 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+          </p>
+        </div>
+        <div class="review">
+          <img src="reviewer3.jpg" alt="photo" />
+          <p class="reviewer-name">Сергей Сергеев</p>
+          <p class="review-text">
+            Отзыв 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-4 highlight-block">
+      <div class="highlight-content _main-container">
+        <div class="highlight-description">
+          <img src="/images/doctor_1.png" alt="Person with Product" class="highlight-image" />
+          <p>
+            Небольшое описание продукта. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam asperiores eius
+            fuga fugiat nostrum inventore laudantium ad magni cumque architecto qui ducimus tempora ab facere corporis,
+            optio similique saepe molestiae?
+          </p>
+        </div>
+        <ul class="highlight-features">
+          <li>Характеристика 1</li>
+          <li>Характеристика 2</li>
+          <li>Характеристика 3</li>
+        </ul>
+        <a href="#order-form" class="order-button">Заказать</a>
+      </div>
+    </section>
+
+    <section class="section-5 order-block">
+      <div class="order-content _main-container">
+        <div class="title-content">
+          <h2>LevelUp</h2>
+          <div class="timer" id="timer">30:00</div>
+        </div>
+        <div class="inner">
+          <div class="left-content">
+            <div class="price">
+              <span class="old-price">1999 руб.</span>
+              <span class="new-price">999 руб.</span>
+            </div>
+            <form id="order-form">
+              <div class="form-group">
+                <label for="name">Имя</label>
+                <input type="text" id="name" name="name" placeholder="Иван Иванов" />
+                <div class="tooltip">Пример: Иван Иванов</div>
+              </div>
+              <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  placeholder="89991112233"
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                <div class="tooltip">Пример: 89991112233</div>
+              </div>
+              <button type="submit">Заказать</button>
+            </form>
+          </div>
+          <div class="right-content">
+            <img src="images/prod.png" alt="Product Image" class="order-product-image" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
