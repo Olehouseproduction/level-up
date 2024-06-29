@@ -1,4 +1,5 @@
 // Таймер
+let isOnce = false;
 let time = 1800;
 const timerElement = document.getElementById("timer");
 
@@ -16,7 +17,7 @@ function timer(time) {
   }, 1000);
 }
 
-timer(time);
+// timer(time);
 
 document.addEventListener("DOMContentLoaded", function () {
   // Добавляем класс "active" к блоку .content
@@ -72,8 +73,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function addAnimationIfVisible() {
-    if (isInViewport(highlightDescription)) {
+    if (isInViewport(highlightDescription && isOnce)) {
+      isOnce = true;
       highlightDescription.classList.add("animate");
+    }
+    if (isInViewport(timerElement)) {
+      timer(time);
       window.removeEventListener("scroll", addAnimationIfVisible);
     }
   }

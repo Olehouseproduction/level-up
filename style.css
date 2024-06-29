@@ -84,16 +84,16 @@ video {
 }
 
 .product-image {
-  max-width: 100%;
+  /* max-width: 100%; */
+  width: 20%;
   height: auto;
   margin: 20px 0;
-  border-radius: 10px;
   animation: zoomIn 1s forwards;
 }
 
 .main-section {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -244,11 +244,11 @@ video {
 }
 
 #prev {
-  left: 39%;
+  left: 30%;
 }
 
 #next {
-  right: 39%;
+  right: 30%;
 }
 
 .review img {
@@ -346,11 +346,6 @@ video {
   justify-content: space-around;
 }
 
-.order-product-image {
-  max-width: 100%;
-  height: auto;
-}
-
 .price {
   margin: 20px 0;
 }
@@ -410,6 +405,10 @@ input:focus {
 
 input:focus + .tooltip {
   display: block;
+}
+
+.product-image-order {
+  width: 70%;
 }
 
 /* Анимации */
@@ -490,13 +489,35 @@ input:focus + .tooltip {
 
 /* Медиа-запросы */
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .main-section {
     flex-direction: column;
   }
 
-  .product-image {
-    margin: 20px 0;
+  #prev {
+    left: 20px;
+  }
+
+  #next {
+    right: 20px;
+  }
+
+  .highlight-description {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
+
+  .highlight-features {
+    align-items: center;
+  }
+
+  .inner {
+    flex-direction: column-reverse;
+  }
+
+  .product-image-order {
+    width: 30%;
   }
 }
 
@@ -526,5 +547,18 @@ input:focus + .tooltip {
 
   .highlight-features li {
     margin: 10px 0;
+  }
+}
+
+@media (max-width: 370px) {
+  .review {
+    max-width: 90%;
+  }
+  #prev {
+    left: 10px;
+  }
+
+  #next {
+    right: 10px;
   }
 }
