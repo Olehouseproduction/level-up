@@ -219,25 +219,77 @@ video {
   background: linear-gradient(45deg, #e0a822, #d19a06, #c38e04, #6a0dad, #8b008b, #d19a06, #f0b610);
 
   padding: 50px 20px;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .reviews-carousel {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.5s ease-in-out;
+
+  position: relative;
   overflow: hidden;
+
+  width: 350px;
+  height: 350px;
 }
 
 .review {
   max-width: 300px;
-  margin: 0 20px;
-  padding: 10px;
-  text-align: center;
-  background-color: #bcacbc;
+  transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
+  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: 15px;
-  transition: transform 0.5s ease;
+  margin: 0 20px;
+  padding: 30px 20px;
+
+  position: absolute;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.review:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: linear-gradient(45deg, #4b0082, #6a0dad);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 1;
+
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.carousel-nav:hover {
+  background: linear-gradient(45deg, #6a0dad, #4b0082);
+}
+
+#prev {
+  left: 39%;
+}
+
+#next {
+  right: 39%;
 }
 
 .review img {
@@ -256,10 +308,25 @@ video {
   background: linear-gradient(135deg, #3b007a 0%, #c38e04 100%);
   color: #e6e6fa;
   padding: 50px 20px;
-  /* display: flex; */
   display: none; /* Изначально скрываем секцию */
   justify-content: center;
   align-items: center;
+}
+
+.highlight-block.active {
+  display: flex;
+  animation: fadeIn 1s ease-out; /* Пример анимации */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .highlight-content {

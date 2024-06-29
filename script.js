@@ -58,3 +58,66 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelector(".content").classList.add("active");
 });
+
+// карусель
+// document.addEventListener("DOMContentLoaded", () => {
+//   const carousel = document.querySelector(".reviews-carousel");
+//   const reviews = document.querySelectorAll(".review");
+//   const prevButton = document.getElementById("prev");
+//   const nextButton = document.getElementById("next");
+//   let currentIndex = 0;
+
+//   function showReview(index) {
+//     const offset = -index * 300; // Adjust based on your review card width
+//     reviews.forEach((review) => {
+//       review.style.transform = `translateX(${offset}px)`;
+//     });
+//   }
+
+//   function nextReview() {
+//     currentIndex = (currentIndex + 1) % reviews.length;
+//     showReview(currentIndex);
+//   }
+
+//   function prevReview() {
+//     currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
+//     showReview(currentIndex);
+//   }
+
+//   nextButton.addEventListener("click", nextReview);
+//   prevButton.addEventListener("click", prevReview);
+
+//   setInterval(nextReview, 5000);
+// });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const carousel = document.querySelector(".reviews-carousel");
+  const reviews = document.querySelectorAll(".review");
+  const prevButton = document.getElementById("prev");
+  const nextButton = document.getElementById("next");
+  let currentIndex = 0;
+
+  function showReview(index) {
+    reviews.forEach((review, i) => {
+      review.style.left = `${(i - index) * 100}%`;
+    });
+  }
+
+  function nextReview() {
+    currentIndex = (currentIndex + 1) % reviews.length;
+    showReview(currentIndex);
+  }
+
+  function prevReview() {
+    currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
+    showReview(currentIndex);
+  }
+
+  nextButton.addEventListener("click", nextReview);
+  prevButton.addEventListener("click", prevReview);
+
+  setInterval(nextReview, 5000);
+
+  // Инициализация
+  showReview(currentIndex);
+});
