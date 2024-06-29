@@ -22,6 +22,7 @@ html {
   margin: 0 auto;
   /* border: 1px solid red; */
 }
+
 /* Секция 1: Главный блок (hero-block) */
 .hero-block {
   position: relative;
@@ -32,7 +33,7 @@ html {
   justify-content: center;
   color: white;
   text-align: center;
-  overflow: hidden; /* Добавляем overflow для скрытия избыточного контента */
+  overflow: hidden;
 }
 
 .background-video::after {
@@ -63,16 +64,12 @@ video {
   object-fit: cover;
 }
 
-/* .content {
-  z-index: 1;
-} */
-
 .content {
-  position: relative; /* Добавляем позицию для корректного отображения */
+  position: relative;
   z-index: 1;
-  opacity: 0; /* Начальная невидимость контента */
-  transform: translateY(50px); /* Сдвиг контента вниз */
-  transition: opacity 0.8s ease, transform 0.8s ease; /* Плавное появление */
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .content.active {
@@ -86,32 +83,12 @@ video {
   animation: fadeIn 1s forwards;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .product-image {
   max-width: 100%;
   height: auto;
   margin: 20px 0;
   border-radius: 10px;
   animation: zoomIn 1s forwards;
-}
-
-@keyframes zoomIn {
-  from {
-    transform: scale(0.5);
-  }
-  to {
-    transform: scale(1);
-  }
 }
 
 .main-section {
@@ -128,18 +105,7 @@ video {
 
 .product-features li {
   margin: 10px 0;
-  animation: slideInLeft 1s forwards; /* Анимация появления списка особенностей */
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  animation: slideInLeft 1s forwards;
 }
 
 .order-button {
@@ -160,16 +126,7 @@ video {
   background-color: #6a0dad;
 }
 
-@media (max-width: 768px) {
-  .main-section {
-    flex-direction: column; /* При малых экранах расположение в столбец */
-  }
-
-  .product-image {
-    margin: 20px 0; /* Уменьшенный отступ у изображения */
-  }
-}
-
+/* Секция 2 (composition-block) */
 .composition-block {
   background: linear-gradient(135deg, #4b0082 0%, #c38e04 100%);
   padding: 50px 20px;
@@ -214,6 +171,8 @@ video {
   height: auto;
   margin: 0 20px;
 }
+
+/* Секция 3 (reviews-block) */
 
 .reviews-block {
   background: linear-gradient(45deg, #e0a822, #d19a06, #c38e04, #6a0dad, #8b008b, #d19a06, #f0b610);
@@ -304,29 +263,20 @@ video {
   font-weight: bold;
 }
 
+/* Секция 4 (highlight-block) */
+
 .highlight-block {
   background: linear-gradient(135deg, #3b007a 0%, #c38e04 100%);
   color: #e6e6fa;
   padding: 50px 20px;
-  display: none; /* Изначально скрываем секцию */
+  /* display: none; */
   justify-content: center;
   align-items: center;
 }
 
 .highlight-block.active {
   display: flex;
-  animation: fadeIn 1s ease-out; /* Пример анимации */
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: fadeIn 1s ease-out;
 }
 
 .highlight-content {
@@ -347,7 +297,14 @@ video {
   display: flex;
   align-items: center;
   margin: 20px 0;
-  animation: fadeInLeft 1s ease-out;
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.highlight-description.animate {
+  opacity: 1;
+  transform: translateX(0);
+  animation: fadeInLeft 1s forwards;
 }
 
 .highlight-features {
@@ -367,38 +324,7 @@ video {
   margin: 0 10px;
 }
 
-@keyframes fadeInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(45px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Секция 5 (order-block) */
 
 .order-block {
   background: linear-gradient(135deg, #c38e04 0%, #ffd700 50%, #8b6508 100%);
@@ -439,16 +365,6 @@ video {
   animation: priceBlink 1s infinite ease-in-out;
 }
 
-@keyframes priceBlink {
-  0%,
-  100% {
-    color: red;
-  }
-  50% {
-    color: orange;
-  }
-}
-
 form {
   display: flex;
   flex-direction: column;
@@ -481,25 +397,6 @@ input:focus {
   outline: none;
 }
 
-/* .order-button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin-top: 20px;
-  background-color: #c38e04;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 5px;
-  border: 2px solid #c38e04;
-  font-size: 16px;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-}
-
-.order-button:hover {
-  background-color: #4b0082;
-  color: #ffffff;
-  border-color: #4b0082;
-} */
-
 .tooltip {
   position: absolute;
   top: -20px;
@@ -513,6 +410,94 @@ input:focus {
 
 input:focus + .tooltip {
   display: block;
+}
+
+/* Анимации */
+
+@keyframes priceBlink {
+  0%,
+  100% {
+    color: red;
+  }
+  50% {
+    color: orange;
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(45px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Медиа-запросы */
+
+@media (max-width: 768px) {
+  .main-section {
+    flex-direction: column;
+  }
+
+  .product-image {
+    margin: 20px 0;
+  }
 }
 
 @media (max-width: 768px) {

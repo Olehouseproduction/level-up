@@ -2,18 +2,6 @@
 let time = 1800;
 const timerElement = document.getElementById("timer");
 
-// const interval = setInterval(() => {
-//   if (time > 0) {
-//     time--;
-//     const minutes = Math.floor(time / 60);
-//     const seconds = time % 60;
-//     timerElement.innerText = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
-//   } else {
-//     timerElement.innerText = "00:00";
-//     clearInterval(interval);
-//   }
-// }, 1000);
-
 function timer(time) {
   setTimeout(() => {
     if (time > 0) {
@@ -30,12 +18,51 @@ function timer(time) {
 
 timer(time);
 
-// анимация
 document.addEventListener("DOMContentLoaded", function () {
-  var highlightBlock = document.querySelector(".highlight-block");
+  // Добавляем класс "active" к блоку .content
+  document.querySelector(".content").classList.add("active");
+
+  // Находим элементы карусели и управляющие кнопки
+  const carousel = document.querySelector(".reviews-carousel");
+  const reviews = document.querySelectorAll(".review");
+  const prevButton = document.getElementById("prev");
+  const nextButton = document.getElementById("next");
+  let currentIndex = 0;
+
+  // Функция для показа отзывов
+  function showReview(index) {
+    reviews.forEach((review, i) => {
+      review.style.left = `${(i - index) * 100}%`;
+    });
+  }
+
+  // Функция для переключения на следующий отзыв
+  function nextReview() {
+    currentIndex = (currentIndex + 1) % reviews.length;
+    showReview(currentIndex);
+  }
+
+  // Функция для переключения на предыдущий отзыв
+  function prevReview() {
+    currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
+    showReview(currentIndex);
+  }
+
+  // Обработчики событий для кнопок "Next" и "Prev"
+  nextButton.addEventListener("click", nextReview);
+  prevButton.addEventListener("click", prevReview);
+
+  // Автоматическое переключение слайдов каждые 5 секунд
+  setInterval(nextReview, 5000);
+
+  // Инициализация показа первого отзыва
+  showReview(currentIndex);
+
+  // Добавляем анимацию для .highlight-description при появлении во viewport
+  const highlightDescription = document.querySelector(".highlight-description");
 
   function isInViewport(element) {
-    var rect = element.getBoundingClientRect();
+    const rect = element.getBoundingClientRect();
     return (
       rect.top >= 0 &&
       rect.left >= 0 &&
@@ -44,80 +71,14 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  function checkVisibility() {
-    if (isInViewport(highlightBlock)) {
-      highlightBlock.style.display = "flex"; // Показываем блок
+  function addAnimationIfVisible() {
+    if (isInViewport(highlightDescription)) {
+      highlightDescription.classList.add("animate");
+      window.removeEventListener("scroll", addAnimationIfVisible);
     }
   }
 
-  // Проверяем видимость блока при загрузке страницы и при скролле
-  checkVisibility();
-  window.addEventListener("scroll", checkVisibility);
-});
+  addAnimationIfVisible();
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelector(".content").classList.add("active");
-});
-
-// карусель
-// document.addEventListener("DOMContentLoaded", () => {
-//   const carousel = document.querySelector(".reviews-carousel");
-//   const reviews = document.querySelectorAll(".review");
-//   const prevButton = document.getElementById("prev");
-//   const nextButton = document.getElementById("next");
-//   let currentIndex = 0;
-
-//   function showReview(index) {
-//     const offset = -index * 300; // Adjust based on your review card width
-//     reviews.forEach((review) => {
-//       review.style.transform = `translateX(${offset}px)`;
-//     });
-//   }
-
-//   function nextReview() {
-//     currentIndex = (currentIndex + 1) % reviews.length;
-//     showReview(currentIndex);
-//   }
-
-//   function prevReview() {
-//     currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
-//     showReview(currentIndex);
-//   }
-
-//   nextButton.addEventListener("click", nextReview);
-//   prevButton.addEventListener("click", prevReview);
-
-//   setInterval(nextReview, 5000);
-// });
-
-document.addEventListener("DOMContentLoaded", () => {
-  const carousel = document.querySelector(".reviews-carousel");
-  const reviews = document.querySelectorAll(".review");
-  const prevButton = document.getElementById("prev");
-  const nextButton = document.getElementById("next");
-  let currentIndex = 0;
-
-  function showReview(index) {
-    reviews.forEach((review, i) => {
-      review.style.left = `${(i - index) * 100}%`;
-    });
-  }
-
-  function nextReview() {
-    currentIndex = (currentIndex + 1) % reviews.length;
-    showReview(currentIndex);
-  }
-
-  function prevReview() {
-    currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
-    showReview(currentIndex);
-  }
-
-  nextButton.addEventListener("click", nextReview);
-  prevButton.addEventListener("click", prevReview);
-
-  setInterval(nextReview, 5000);
-
-  // Инициализация
-  showReview(currentIndex);
+  window.addEventListener("scroll", addAnimationIfVisible);
 });
