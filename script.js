@@ -17,8 +17,6 @@ function timer(time) {
   }, 1000);
 }
 
-// timer(time);
-
 document.addEventListener("DOMContentLoaded", function () {
   // Добавляем класс "active" к блоку .content
   document.querySelector(".content").classList.add("active");
@@ -73,11 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function addAnimationIfVisible() {
-    if (isInViewport(highlightDescription && isOnce)) {
+    if (isInViewport(highlightDescription) && !isOnce) {
       isOnce = true;
       highlightDescription.classList.add("animate");
     }
     if (isInViewport(timerElement)) {
+      console.log("Второй if");
       timer(time);
       window.removeEventListener("scroll", addAnimationIfVisible);
     }
