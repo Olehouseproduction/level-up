@@ -49,15 +49,6 @@ html {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-.background-video video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 video {
   position: absolute;
   top: 0;
@@ -68,7 +59,7 @@ video {
 }
 
 .content {
-  position: relative;
+  /* position: relative; */
   z-index: 1;
   opacity: 0;
   transform: translateY(5rem);
@@ -121,7 +112,7 @@ video {
   border-radius: 0.5rem;
   border: none;
   font-size: 1.8rem;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
@@ -202,7 +193,6 @@ video {
 
 .review {
   max-width: 30rem;
-  transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
   background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
@@ -216,7 +206,6 @@ video {
   width: 100%;
   border-radius: 1.5rem;
   box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
-
   transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -300,7 +289,7 @@ video {
   align-items: center;
   margin: 2rem 0;
   opacity: 0;
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: all 0.8s ease;
 }
 
 .highlight-description.animate {
@@ -314,8 +303,6 @@ video {
   padding: 0;
   display: flex;
   width: 100%;
-  justify-content: space-around;
-
   justify-content: center;
   margin-top: 2rem;
   margin-bottom: 2.5rem;
