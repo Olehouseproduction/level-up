@@ -1,25 +1,52 @@
-// Таймер
-let isOnce = false; // Флаг, который используется для запуска таймера один раз.
-let time = 1800; // Время для таймера (в секундах).
-const timerElement = document.getElementById("timer"); // Получаем элемент таймера по его ID.
-
-function timer(time) {
-  setTimeout(() => {
-    if (time > 0) {
-      time--; // Уменьшаем время на одну секунду.
-      const minutes = Math.floor(time / 60); // Вычисляем количество оставшихся минут.
-      const seconds = time % 60; // Вычисляем количество оставшихся секунд.
-      // Обновляем текст таймера с добавлением ведущего нуля для секунд, если это необходимо.
-      timerElement.innerText = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
-      timer(time); // Рекурсивно вызываем функцию для следующей секунды.
-    } else {
-      timerElement.innerText = "00:00"; // Когда время истекает, устанавливаем текст таймера на "00:00".
-    }
-  }, 1000);
-}
-
 // Дожидаемся полной загрузки DOM
 document.addEventListener("DOMContentLoaded", function () {
+  // Анимация для изображений .product-image
+  const images = document.querySelectorAll(".product-image");
+
+  // Создаем новый IntersectionObserver
+  const observer = new IntersectionObserver(
+    // Эта функция будет вызвана, когда наблюдаемый элемент пересекает порог видимости
+    (entries, observer) => {
+      // Обрабатываем каждый entry (наблюдаемый элемент)
+      entries.forEach((entry) => {
+        // Проверяем, пересек ли элемент порог видимости
+        if (entry.isIntersecting) {
+          // Если элемент виден, добавляем ему класс zoomIn для запуска анимации
+          entry.target.classList.add("zoomIn");
+          // Прекращаем наблюдение за этим элементом, так как анимация уже добавлена
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    // Задаем порог видимости: 0.5 означает, что callback будет вызван,
+    // когда 50% элемента будет видимо
+    { threshold: 0.5 }
+  );
+  // Наблюдаем за каждым элементом с классом .product-image
+  images.forEach((image) => {
+    observer.observe(image);
+  });
+
+  // Таймер
+  let isOnce = false; // Флаг, который используется для запуска таймера один раз.
+  let time = 1800; // Время для таймера (в секундах).
+  const timerElement = document.getElementById("timer"); // Получаем элемент таймера по его ID.
+
+  function timer(time) {
+    setTimeout(() => {
+      if (time > 0) {
+        time--; // Уменьшаем время на одну секунду.
+        const minutes = Math.floor(time / 60); // Вычисляем количество оставшихся минут.
+        const seconds = time % 60; // Вычисляем количество оставшихся секунд.
+        // Обновляем текст таймера с добавлением ведущего нуля для секунд, если это необходимо.
+        timerElement.innerText = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+        timer(time); // Рекурсивно вызываем функцию для следующей секунды.
+      } else {
+        timerElement.innerText = "00:00"; // Когда время истекает, устанавливаем текст таймера на "00:00".
+      }
+    }, 1000);
+  }
+
   // Добавляем класс "active" к блоку .content для запуска анимации появления контента.
   document.querySelector(".content").classList.add("active");
 
@@ -54,8 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
   nextButton.addEventListener("click", nextReview);
   prevButton.addEventListener("click", prevReview);
 
-  // Автоматическое переключение слайдов каждые 5 секунд
-  setInterval(nextReview, 5000); // Устанавливаем интервал для автоматической смены отзывов.
+  // Автоматическое переключение слайдов каждые 2 секунды
+  setInterval(nextReview, 2000); // Устанавливаем интервал для автоматической смены отзывов.
 
   // Инициализация показа первого отзыва
   showReview(currentIndex); // Показываем первый отзыв при загрузке страницы.
