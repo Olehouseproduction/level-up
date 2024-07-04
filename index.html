@@ -89,7 +89,6 @@
       <button id="prev" class="carousel-nav">❮</button>
       <button id="next" class="carousel-nav">❯</button>
     </section>
-
     <section class="section-4 highlight-block">
       <div class="highlight-content _main-container">
         <div class="highlight-description">
@@ -121,7 +120,7 @@
               <span class="old-price">1999 руб.</span>
               <span class="new-price">999&nbsp;руб.</span>
             </div>
-            <form id="order-form">
+            <form id="order-form" autocomplete="off">
               <div class="form-group">
                 <label for="name">Имя</label>
                 <input type="text" id="name" name="name" placeholder="Иван Иванов" />
@@ -135,6 +134,7 @@
                   name="phone"
                   placeholder="89991112233"
                   onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                <!-- обработчик события, который ограничивает ввод только цифрами. event.charCode возвращает код символа, и если он находится в диапазоне от 48 до 57 (коды символов для цифр 0-9), то ввод разрешается, иначе блокируется. -->
                 <div class="tooltip">Пример: 89991112233</div>
               </div>
               <button class="order-button" type="submit">Заказать</button>
